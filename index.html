@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!--  CSS  -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+        * {
+    font-size: 18px;
+    font-family: 'Nanum Brush Script', cursive;
+        }
+
+    .container {
+        width: 600px;
+        height: 500px;
+    }
+
+    .title {
+        font-size: 48px;
+    }
+
+    .price {
+        font-size: 18px;
+    }
+
+    .img {
+        width: 550px;
+        height: 300px;
+        background-image: url("https://cdn.wip-news.com/news/photo/202101/4505_4045_4931.jpg");
+        background-position: center ;
+        background-size: cover;
+        margin: auto;
+    }
+
+    .btn {
+        display: block;
+        margin: auto;
+    }
+
+    .color {
+        color: blue;
+    }
+    </style>
+    <script>
+        $(document).ready(function () {
+        rate()
+      });
+
+        function rate() {
+            $.ajax({
+              type: "GET",
+              url: "https://api.manana.kr/exchange/rate.json",
+              data: {},
+              success: function (response) {
+                  let now__rate = response[1]['rate']
+                  let temp_html = `<span>${now__rate}</span>`
+                  $('#now__rate').append(temp_html);
+              }
+            })
+        }
+
+    </script>
+    <title>스파르타코딩클럽 | 부트스트랩 연습하기</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="img"></div>
+        <div class="title">양초를 팝니다<span class="price">가격:3,000원/개</span></div>
+        <p>이 양초는 사실 특별한 힘을 가지고있어요. 양초를 켜고 소원을 빌면 짜자잔 뭐든지 이뤄<br>지게 된답니다. 하나 사가세요! 대나무 향이 아주 좋아요</p>
+        <div class="color" id="now__rate">달러-원 환율 : <span></span></div>
+    </div>
+
+
+
+    <div class="container">
+        <!-- 주문자 이름 -->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">주문자 이름</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+        <!--    드롭다운-->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">수량</label>
+          </div>
+          <select class="custom-select" id="inputGroupSelect01">
+            <option selected>수량을 선택하세요</option>
+            <option value="1">1개</option>
+            <option value="2">2개</option>
+            <option value="3">3개</option>
+          </select>
+        </div>
+        <!-- 주소 -->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon2">주소</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <!-- 전화번호   -->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">전화번호</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <button type="button" class="btn btn-primary">주문하기</button>
+    </div>
+</body>
+
+</html>
